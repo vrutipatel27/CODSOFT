@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #f2f2f2;
+        font-family: Arial;
+      }
+
+      .main {
+        height: 600px;
+        width: 550px;
+        background-color: dimgray;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 20px;
+      }
+
+      input {
+        height: 90px;
+        width: 470px;
+        background-color: skyblue;
+        font-size: 35px;
+        text-align: right;
+        padding-right: 10px;
+        border: none;
+        outline: none;
+      }
+
+      .d1,
+      .d2,
+      .d3,
+      .d4 {
+        display: flex;
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      button {
+        height: 80px;
+        width: 80px;
+        font-size: 28px;
+        border-radius: 10px;
+        border: 2px solid black;
+        background: darkslategrey;
+        color: white;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #4d6d6d;
+      }
+
+      .equal {
+        background: green;
+      }
+
+      .clear {
+        background: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main">
+      <div class="display">
+        <input type="text" id="dis" readonly />
+      </div>
+
+      <div class="d1">
+        <button onclick="addValue('1')">1</button>
+        <button onclick="addValue('2')">2</button>
+        <button onclick="addValue('3')">3</button>
+        <button onclick="addValue('/')">/</button>
+        <button class="clear" onclick="clearDisplay()">C</button>
+      </div>
+
+      <div class="d2">
+        <button onclick="addValue('4')">4</button>
+        <button onclick="addValue('5')">5</button>
+        <button onclick="addValue('6')">6</button>
+        <button onclick="addValue('*')">*</button>
+        <button onclick="addValue('%')">%</button>
+      </div>
+
+      <div class="d3">
+        <button onclick="addValue('7')">7</button>
+        <button onclick="addValue('8')">8</button>
+        <button onclick="addValue('9')">9</button>
+        <button onclick="addValue('+')">+</button>
+        <button onclick="addValue('-')">-</button>
+      </div>
+
+      <div class="d4">
+        <button onclick="addValue('0')">0</button>
+        <button onclick="addValue('00')">00</button>
+        <button onclick="addValue('.')">.</button>
+        <button onclick="backspace()">⌫</button>
+        <button class="equal" onclick="calculate()">=</button>
+      </div>
+    </div>
+
+    <script>
+      function addValue(value) {
+        document.getElementById("dis").value += value;
+      }
+
+      function clearDisplay() {
+        document.getElementById("dis").value = "";
+      }
+
+      function backspace() {
+        let text = document.getElementById("dis").value;
+        document.getElementById("dis").value = text.slice(0, -1);
+      }
+
+      function calculate() {
+        let expression = document.getElementById("dis").value;
+
+        try {
+          let result = eval(expression);
+          document.getElementById("dis").value = result;
+        } catch {
+          document.getElementById("dis").value = "Error";
+        }
+      }
+    </script>
+  </body>
+</html>
